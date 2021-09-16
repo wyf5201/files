@@ -1,0 +1,39 @@
+启动文件
+
+#!/bin/bash
+
+source /home/wyf/catkin_ws/devel/setup.bash
+
+roslaunch wyf_gazebo wyf_laser_nav_gazebo.launch  &
+sleep 2
+
+roslaunch wyf_navigation exploring_slam_demo.launch  
+sleep 2
+wait
+exit 0
+
+
+切换
+
+echo "<< please seclet ros noetic(1) or ros2 foxy(2) or Non-ROS?  >>"
+read edition
+if [ "$edition" -eq "1" ];then
+  source /opt/ros/noetic/setup.bash
+  echo "Now is <noetic>"
+elif [ "$edition" -eq "2" ];then
+  source /opt/ros/foxy/setup.bash
+  echo "Now is <foxy>"
+  else
+echo "Non-ROS"
+fi
+
+
+source /usr/share/colcon_cd/function/colcon_cd.sh
+export _colcon_cd_root=~/ros2_install
+
+export SVGA_VGPU10=0
+
+
+
+
+
